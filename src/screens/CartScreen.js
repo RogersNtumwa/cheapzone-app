@@ -11,7 +11,7 @@ import {
   Form,
 } from "react-bootstrap";
 
-import { addToCart } from "../actions/cart";
+import { addToCart, removeFromCart } from "../actions/cart";
 import Message from "../components/Message";
 
 const CartScreen = ({ history, match, location }) => {
@@ -21,7 +21,9 @@ const CartScreen = ({ history, match, location }) => {
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
 
-  const removeFromCartHandler = (id) => {};
+  const removeFromCartHandler = (id) => {
+    dispatch(removeFromCart(id));
+  };
   const checkOutHandler = () => {
     history.push("/login?redirect=shipping");
   };
