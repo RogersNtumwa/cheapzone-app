@@ -5,11 +5,9 @@ import {
   USER_LOADED,
   AUTH_ERROR,
   LOGIN_FAIL,
-  SIGN_OUT,
   LOGIN_SUCCESS,
   USER_LOGOUT,
 } from "./types";
-import { setAlert } from "./alert";
 import setAuthToken from "../utils/setAuthToken";
 
 export const registerUser = ({ name, email, password }) => async (dispatch) => {
@@ -65,6 +63,7 @@ export const loadUser = () => async (dispatch) => {
       type: USER_LOADED,
       payload: data,
     });
+    
   } catch (err) {
     dispatch({
       type: AUTH_ERROR,

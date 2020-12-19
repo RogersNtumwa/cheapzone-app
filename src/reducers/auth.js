@@ -8,10 +8,14 @@ import {
   USER_LOGOUT,
 } from "../actions/types";
 const initialState = {
-  user: null,
-  isAuthenticated: false,
+  user: localStorage.getItem("user")
+    ? JSON.parse(localStorage.getItem("user"))
+    : {},
+  isAuthenticated: localStorage.getItem("isAuthenticated")
+    ? localStorage.getItem("user")
+    : false,
   token: localStorage.getItem("token"),
-  loading: true,
+  loading: localStorage.getItem("token") ? false : true,
   errors: {},
 };
 
@@ -35,15 +39,19 @@ const user = (state = initialState, action) => {
       localStorage.removeItem("token");
       localStorage.removeItem("shippingAddress");
       localStorage.removeItem("paymentMethod");
+      localStorage.removeItem("user");
+      localStorage.removeItem("isAuthenticated");
       return {
         ...state,
         token: null,
         isAuthenticated: false,
         errors: payload,
         loading: false,
-        user: null,
+        user: {},
       };
     case USER_LOADED:
+      localStorage.setItem("user", JSON.stringify(payload));
+      localStorage.setItem("isAuthenticated", true);
       return {
         ...state,
         isAuthenticated: true,
