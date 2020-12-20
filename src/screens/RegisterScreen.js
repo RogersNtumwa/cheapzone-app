@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Button, Form, Row, Col } from "react-bootstrap";
 
-import { registerUser } from "../actions/auth";
 import FormContainer from "../components/FormContainer";
+import { registerUser } from "../actions/auth";
 
 const RegisterScreen = ({ history, location }) => {
   const [email, setEmail] = useState("");
@@ -34,9 +34,9 @@ const RegisterScreen = ({ history, location }) => {
       <h1>Sign Up</h1>
       <Form onSubmit={onSubmitHandler}>
         <Form.Group controlId="email">
-          <Form.Label>USer Name</Form.Label>
+          <Form.Label>User Name</Form.Label>
           <Form.Control
-            type="name"
+            type="text"
             placeholder="Enter your name here"
             value={name}
             onChange={(e) => setName(e.target.value)}

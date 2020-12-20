@@ -25,7 +25,7 @@ const CartScreen = ({ history, match, location }) => {
     dispatch(removeFromCart(id));
   };
   const checkOutHandler = () => {
-    history.push("/login?redirect=shipping");
+    history.push("/signin?redirect=shipping");
   };
 
   useEffect(() => {
