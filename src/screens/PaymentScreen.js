@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Button, Form, Col } from "react-bootstrap";
 import { savePaymentMethod } from "../actions/cart";
 import FormContainer from "../components/FormContainer";
-// import CheckOutstep from "../components/CheckOutstep";
+import CheckOutstep from "../components/CheckOutstep";
 
 const PaymentScreen = ({ history }) => {
   const [paymentMethod, setPaymentMethod] = useState("CashOnDelivery");
@@ -23,7 +23,7 @@ const PaymentScreen = ({ history }) => {
   };
   return (
     <FormContainer>
-      {/* <CheckOutstep step1 step2 step3 /> */}
+      <CheckOutstep step1 step2 step3 />
       <h1>Payment Method</h1>
       <Form onSubmit={onSubmitHandler}>
         <Form.Group>

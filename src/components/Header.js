@@ -29,9 +29,9 @@ const Header = () => {
               </LinkContainer>
               {isAuthenticated ? (
                 <NavDropdown title={user.name} id="username">
-                  <LinkContainer to="/profile">
+                  {/* <LinkContainer to="/profile">
                     <NavDropdown.Item>Profile</NavDropdown.Item>
-                  </LinkContainer>
+                  </LinkContainer> */}
                   <NavDropdown.Item onClick={logoutHandler}>
                     LogOut
                   </NavDropdown.Item>
