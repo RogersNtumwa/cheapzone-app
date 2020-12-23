@@ -4,6 +4,9 @@ import {
   ORDER_CREATE_FAIL,
   ORDER_CREATE_SUCCESS,
   ORDER_CREATE_REQUEST,
+  ORDER_DETAILS_SUCCESS,
+  ORDER_DETAILS_FAIL,
+  ORDER_DETAILS_REQUEST,
 } from "./types";
 import setAuthToken from "../utils/setAuthToken";
 
@@ -30,6 +33,37 @@ export const createOrder = (formData) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: ORDER_CREATE_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+
+export const getOrder = (id) => async (dispatch) => {
+  dispatch({
+    type: ORDER_DETAILS_REQUEST,
+  });
+  try {
+    if (localStorage.token) {
+      setAuthToken(localStorage.token);
+    }
+
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    const { data } = await axios.get(`/api/v1/orders/${id}`, config);
+    dispatch({
+      type: ORDER_DETAILS_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: ORDER_DETAILS_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message
