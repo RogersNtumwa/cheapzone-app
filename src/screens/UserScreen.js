@@ -18,7 +18,7 @@ const UserScreen = ({ history }) => {
     } else {
       history.push("/signin");
     }
-  }, [dispatch, history]);
+  }, [dispatch, history, userinfo, user.isAdmin]);
 
   const deleteUserHandler = (id) => {
     console.log("delete user");
