@@ -14,6 +14,9 @@ import {
   PRODUCT_UPDATE_SUCCESS,
   PRODUCT_UPDATE_FAIL,
   PRODUCT_UPDATE_RESET,
+  RELATED_PRODUCT_REQUEST,
+  RELATED_PRODUCT_FAIL,
+  RELATED_PRODUCT_SUCCESS,
 } from "../actions/types";
 const initialState = {
   products: [],
@@ -127,6 +130,33 @@ export const editProductReducer = (state = { product: {} }, action) => {
       return {
         product: {},
       };
+    default:
+      return state;
+  }
+};
+
+export const relatedProductsReducer = (
+  state = { products: [], loading: true },
+  { type, payload }
+) => {
+  switch (type) {
+    case RELATED_PRODUCT_REQUEST:
+      return {
+        loading: true,
+      };
+
+    case RELATED_PRODUCT_SUCCESS:
+      return {
+        ...state,
+        products: payload,
+        loading: false,
+      };
+    case RELATED_PRODUCT_FAIL:
+      return {
+        error: payload,
+        loading: false,
+      };
+
     default:
       return state;
   }

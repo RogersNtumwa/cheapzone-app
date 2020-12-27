@@ -13,13 +13,16 @@ import {
   PRODUCT_UPDATE_SUCCESS,
   PRODUCT_UPDATE_REQUEST,
   PRODUCT_UPDATE_FAIL,
+  RELATED_PRODUCT_REQUEST,
+  RELATED_PRODUCT_SUCCESS,
+  RELATED_PRODUCT_FAIL,
 } from "./types";
 import axios from "axios";
 import setAuthToken from "../utils/setAuthToken";
 
-export const listProducts = () => async (dispatch) => {
+export const listProducts = (keyword = "") => async (dispatch) => {
   try {
-    const { data } = await axios.get("/api/v1/products");
+    const { data } = await axios.get(`/api/v1/products?keyword=${keyword}`);
     dispatch({
       type: PRODUCT_LIST_SUCCESS,
       payload: data,
@@ -42,6 +45,8 @@ export const productDetails = (id) => async (dispatch) => {
       type: PRODUCT_DETAILS_SUCCESS,
       payload: data,
     });
+
+    dispatch(getRelatedProducts(id));
   } catch (error) {
     dispatch({
       type: PRODUCT_DETAILS_FAIL,
@@ -121,6 +126,25 @@ export const updateProduct = (product) => async (dispatch, getstate) => {
   } catch (error) {
     dispatch({
       type: PRODUCT_UPDATE_FAIL,
+    });
+  }
+};
+
+export const getRelatedProducts = (id) => async (dispatch) => {
+  dispatch({ type: RELATED_PRODUCT_REQUEST });
+  try {
+    const { data } = await axios.get(`/api/v1/products/${id}/relatedProducts`);
+    dispatch({
+      type: RELATED_PRODUCT_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: RELATED_PRODUCT_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
     });
   }
 };
