@@ -10,7 +10,9 @@ export const getUsers = () => async (dispatch) => {
   try {
     dispatch({ type: USER_LIST_REQUEST });
 
-    const { data } = await axios.get("/api/v1/users/list");
+    const { data } = await axios.get(
+      "https://cheapzone-api.herokuapp.com/api/v1/users/list"
+    );
 
     dispatch({
       type: USER_LIST_SUCCESS,

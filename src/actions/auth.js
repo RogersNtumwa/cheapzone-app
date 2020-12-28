@@ -18,7 +18,11 @@ export const registerUser = ({ name, email, password }) => async (dispatch) => {
   };
   const body = JSON.stringify({ name, email, password });
   try {
-    const { data } = await axios.post("/api/v1/users/register", body, config);
+    const { data } = await axios.post(
+      "https://cheapzone-api.herokuapp.com/api/v1/users/register",
+      body,
+      config
+    );
     dispatch({
       type: REGISTER_SUCCESS,
       payload: data,
@@ -39,7 +43,11 @@ export const userLogin = (email, password) => async (dispatch) => {
   };
   const body = JSON.stringify({ email, password });
   try {
-    const { data } = await axios.post("/api/v1/users", body, config);
+    const { data } = await axios.post(
+      "https://cheapzone-api.herokuapp.com/api/v1/users",
+      body,
+      config
+    );
     dispatch({
       type: LOGIN_SUCCESS,
       payload: data,
@@ -58,7 +66,9 @@ export const loadUser = () => async (dispatch) => {
   }
 
   try {
-    const { data } = await axios.get("/api/v1/users/me");
+    const { data } = await axios.get(
+      "https://cheapzone-api.herokuapp.com/api/v1/users/me"
+    );
     dispatch({
       type: USER_LOADED,
       payload: data,

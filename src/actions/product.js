@@ -42,7 +42,9 @@ export const listProducts = (keyword = "") => async (dispatch) => {
 export const productDetails = (id) => async (dispatch) => {
   try {
     dispatch({ type: PRODUCT_DETAILS_REQUEST });
-    const { data } = await axios.get(`/api/v1/products/${id}`);
+    const { data } = await axios.get(
+      `https://cheapzone-api.herokuapp.com/api/v1/products/${id}`
+    );
     dispatch({
       type: PRODUCT_DETAILS_SUCCESS,
       payload: data,
@@ -66,7 +68,9 @@ export const deleteproduct = (id) => async (dispatch) => {
     if (localStorage.token) {
       setAuthToken(localStorage.token);
     }
-    await axios.delete(`/api/v1/products/${id}`);
+    await axios.delete(
+      `https://cheapzone-api.herokuapp.com/api/v1/products/${id}`
+    );
     dispatch({
       type: PRODUCT_DELETE_SUCCESS,
     });
@@ -93,7 +97,11 @@ export const createProduct = (formdata) => async (dispatch) => {
     if (localStorage.token) {
       setAuthToken(localStorage.token);
     }
-    const { data } = await axios.post("/api/v1/products", body, config);
+    const { data } = await axios.post(
+      "https://cheapzone-api.herokuapp.com/api/v1/products",
+      body,
+      config
+    );
     dispatch({
       type: PRODUCT_CREATE_SUCCESS,
       payload: data,
@@ -117,7 +125,7 @@ export const updateProduct = (product) => async (dispatch, getstate) => {
     };
 
     const { data } = await axios.patch(
-      `/api/v1/products/${product._id}`,
+      `https://cheapzone-api.herokuapp.com/api/v1/products/${product._id}`,
       product,
       config
     );
@@ -135,7 +143,9 @@ export const updateProduct = (product) => async (dispatch, getstate) => {
 export const getRelatedProducts = (id) => async (dispatch) => {
   dispatch({ type: RELATED_PRODUCT_REQUEST });
   try {
-    const { data } = await axios.get(`/api/v1/products/${id}/relatedProducts`);
+    const { data } = await axios.get(
+      `https://cheapzone-api.herokuapp.com/api/v1/products/${id}/relatedProducts`
+    );
     dispatch({
       type: RELATED_PRODUCT_SUCCESS,
       payload: data,

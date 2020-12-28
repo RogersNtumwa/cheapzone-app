@@ -8,7 +8,9 @@ import {
 export const listCategories = () => async (dispatch) => {
   dispatch({ type: CATEGORY_LIST_REQUEST });
   try {
-    const { data } = await axios.get("/api/v1/category");
+    const { data } = await axios.get(
+      "https://cheapzone-api.herokuapp.com/api/v1/category"
+    );
     dispatch({
       type: CATEGORY_LIST_SUCCESS,
       payload: data,

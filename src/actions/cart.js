@@ -7,7 +7,9 @@ import {
 import axios from "axios";
 
 export const addToCart = (id, qty) => async (dispatch, getstate) => {
-  const { data } = await axios.get(`/api/v1/products/${id}`);
+  const { data } = await axios.get(
+    `https://cheapzone-api.herokuapp.com/api/v1/products/${id}`
+  );
 
   dispatch({
     type: CART_ADD_ITEM,
