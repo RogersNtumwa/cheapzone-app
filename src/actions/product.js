@@ -22,7 +22,9 @@ import setAuthToken from "../utils/setAuthToken";
 
 export const listProducts = (keyword = "") => async (dispatch) => {
   try {
-    const { data } = await axios.get(`/api/v1/products?keyword=${keyword}`);
+    const { data } = await axios.get(
+      `https://cheapzone-api.herokuapp.com/api/v1/products?keyword=${keyword}`
+    );
     dispatch({
       type: PRODUCT_LIST_SUCCESS,
       payload: data,
@@ -133,9 +135,7 @@ export const updateProduct = (product) => async (dispatch, getstate) => {
 export const getRelatedProducts = (id) => async (dispatch) => {
   dispatch({ type: RELATED_PRODUCT_REQUEST });
   try {
-    const { data } = await axios.get(
-      `https://cheapzone-api.herokuapp.com/api/v1/products/${id}/relatedProducts`
-    );
+    const { data } = await axios.get(`/api/v1/products/${id}/relatedProducts`);
     dispatch({
       type: RELATED_PRODUCT_SUCCESS,
       payload: data,
