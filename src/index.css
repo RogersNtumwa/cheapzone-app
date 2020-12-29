@@ -17,3 +17,10 @@ h2 {
 .rating span {
   margin: 0.1rem;
 }
+
+.card {
+  height: 100%;
+}
+
+.jumbotrone {
+}
