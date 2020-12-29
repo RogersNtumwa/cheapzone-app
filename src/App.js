@@ -15,14 +15,16 @@ import OrderScreen from "./screens/OrderScreen";
 import UserScreen from "./screens/UserScreen";
 import ProductlistScreen from "./screens/ProductlistScreen";
 import ProductEditScreen from "./screens/ProductEditScreen";
+import LandingpageScreen from "./screens/LandingpageScreen";
 const App = () => {
   return (
     <Router>
       <Header />
       <main className="py-3">
         <Container>
+          <Route path="/" component={LandingpageScreen} exact />
           <Route path="/search/:keyword" component={HomeScreen} />
-          <Route path="/" component={HomeScreen} exact />
+          <Route path="/shop" component={HomeScreen} exact />
           <Route path="/product/:id" component={ProductScreen} exact />
           <Route path="/cart/:id?" component={CartScreen} exact />
           <Route path="/signin" component={LogInScreen} exact />

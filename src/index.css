@@ -22,5 +22,19 @@ h2 {
   height: 100%;
 }
 
+.btn-large {
+  width: 10rem;
+  text-align: center;
+  background-color: #a68c0a;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+}
+
 .jumbotrone {
+}
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
