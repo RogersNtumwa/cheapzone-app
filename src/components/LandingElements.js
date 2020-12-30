@@ -105,7 +105,8 @@ export const BestCollection = styled.div`
         font-size: 1rem;
         ul {
           list-style-type: none;
-          padding:0;
+          padding: 0;
+          margin-top: 0.5rem;
         }
       }
       button {
