@@ -99,11 +99,14 @@ export const BestCollection = styled.div`
     }
     .text {
       width: 50%;
-
       padding: 1rem 2rem;
 
       p {
-        font-size: 1.2rem;
+        font-size: 1rem;
+        ul {
+          list-style-type: none;
+          padding:0;
+        }
       }
       button {
         margin-right: 1rem;
