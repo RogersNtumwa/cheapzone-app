@@ -97,7 +97,7 @@ const LandingpageScreen = () => {
           <div className="photo">
             <img
               src="https://res.cloudinary.com/dlloahxji/image/upload/v1609327583/melvin-buezo_a3pr6a.jpg"
-              alt="image"
+              alt="bestcollection"
               className="image"
             />
           </div>
