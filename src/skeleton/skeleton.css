@@ -28,6 +28,10 @@
   overflow: hidden;
 }
 
+.skeleton-product {
+  width: 100%;
+}
+
 /* animation effect */
 .shimmer-wrapper {
   position: absolute;

@@ -5,7 +5,7 @@ import SkeletonElments from "./SkeletonElments";
 export const SkeletionProductcard = () => {
   return (
     <div className="skeleton-wrapper">
-      <div className="skeleton-prduct">
+      <div className="skeleton-product">
         <SkeletonElments type="image" />
         <SkeletonElments type="title" />
         <SkeletonElments type="text" />
