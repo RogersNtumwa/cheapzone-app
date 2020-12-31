@@ -7,8 +7,30 @@ import {
   ORDER_DETAILS_SUCCESS,
   ORDER_DETAILS_FAIL,
   ORDER_DETAILS_REQUEST,
+  ORDER_SUCCESS,
+  ORDER_FAIL,
 } from "./types";
 import setAuthToken from "../utils/setAuthToken";
+
+export const getOrders = () => async (dispatch) => {
+  try {
+    if (localStorage.token) {
+      setAuthToken(localStorage.token);
+    }
+    const { data } = await axios.get(
+      "https://cheapzone-api.herokuapp.com/api/v1/orders"
+    );
+
+    dispatch({
+      type: ORDER_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: ORDER_FAIL,
+    });
+  }
+};
 
 export const createOrder = (formData) => async (dispatch) => {
   dispatch({

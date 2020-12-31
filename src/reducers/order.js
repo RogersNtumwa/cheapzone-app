@@ -5,7 +5,26 @@ import {
   ORDER_DETAILS_REQUEST,
   ORDER_DETAILS_SUCCESS,
   ORDER_DETAILS_FAIL,
+  ORDER_SUCCESS,
+  ORDER_FAIL,
 } from "../actions/types";
+
+export const OrderReducer = (state = { loading: true, orders: [] }, action) => {
+  const { type, payload } = action;
+  switch (type) {
+    case ORDER_SUCCESS:
+      return {
+        loading: false,
+        orders: payload,
+      };
+    case ORDER_FAIL:
+      return {
+        loading: false,
+      };
+    default:
+      return state;
+  }
+};
 
 export const PlaceOrderReducer = (state = {}, action) => {
   const { type, payload } = action;
