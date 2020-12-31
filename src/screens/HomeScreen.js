@@ -8,6 +8,10 @@ import { responsive } from "../utils/Carousel";
 import Product from "../components/Product";
 import { listProducts } from "../actions/product";
 import Carauselimage from "../components/Carauselimage";
+import {
+  SkeletionProductcard,
+  CarouselSkeletion,
+} from "../skeleton/SkeletionProductcard";
 // import Message from "../components/Message";
 
 const HomeScreen = ({ match }) => {
@@ -16,6 +20,7 @@ const HomeScreen = ({ match }) => {
   const productList = useSelector((state) => state.products);
 
   const { loading, products } = productList;
+  const SkeletonArray = [1, 2, 3, 4, 5, 6, 7, 8];
 
   useEffect(() => {
     dispatch(listProducts(keyword));
@@ -31,10 +36,9 @@ const HomeScreen = ({ match }) => {
           autoPlay={true}
           infinite={true}
           centerMode={true}
-          
         >
           {loading
-            ? " "
+            ? SkeletonArray.map((num) => <CarouselSkeletion key={num} />)
             : products.data.products.map((product) => (
                 <div>
                   <Carauselimage item={product} />
@@ -42,10 +46,15 @@ const HomeScreen = ({ match }) => {
               ))}
         </Carousel>
       </div>
-
       <h1>Latest Products</h1>
       {loading ? (
-        " "
+        <Row>
+          {SkeletonArray.map((num) => (
+            <Col sm={12} md={6} lg={4} xl={3} key={num}>
+              <SkeletionProductcard />
+            </Col>
+          ))}
+        </Row>
       ) : (
         //we shall implemented error messsage here
         <Row>
