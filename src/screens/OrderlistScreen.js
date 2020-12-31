@@ -2,18 +2,20 @@ import React, { Fragment, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Table, Button, Row, Col } from "react-bootstrap";
 
-import { getOrders } from "../actions/order";
+import { getOrders, deleteOrder } from "../actions/order";
 
 const OrderlistScreen = ({ history }) => {
   const dispatch = useDispatch();
 
   const orderlist = useSelector((state) => state.orderlist);
+  const deleteOrders = useSelector((state) => state.deleteOrder);
+
   const userinfo = useSelector((state) => state.auth);
 
   const { loading, orders } = orderlist;
-  const { user } = userinfo;
+  const { success } = deleteOrders;
 
-  const deleteOrderHandler = (e) => {};
+  const { user } = userinfo;
 
   useEffect(() => {
     if (userinfo && user.isAdmin) {
@@ -21,7 +23,13 @@ const OrderlistScreen = ({ history }) => {
     } else {
       history.push("/signin");
     }
-  }, [dispatch, history, user.isAdmin, userinfo]);
+  }, [dispatch, history, user.isAdmin, userinfo, success]);
+
+  const deleteOrderHandler = (id) => {
+    if (window.confirm("Are you sure")) {
+      dispatch(deleteOrder(id));
+    }
+  };
 
   return (
     <Fragment>

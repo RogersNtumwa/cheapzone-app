@@ -9,6 +9,9 @@ import {
   ORDER_DETAILS_REQUEST,
   ORDER_SUCCESS,
   ORDER_FAIL,
+  ORDER_DELETE_REQUEST,
+  ORDER_DELETE_SUCCEESS,
+  ORDER_DELETE_FAIL,
 } from "./types";
 import setAuthToken from "../utils/setAuthToken";
 
@@ -93,6 +96,29 @@ export const getOrder = (id) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: ORDER_DETAILS_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+
+export const deleteOrder = (id) => async (dispatch) => {
+  dispatch({ type: ORDER_DELETE_REQUEST });
+  try {
+    if (localStorage.token) {
+      setAuthToken(localStorage.token);
+    }
+    await axios.delete(
+      `https://cheapzone-api.herokuapp.com/api/v1/orders/${id}`
+    );
+    dispatch({
+      type: ORDER_DELETE_SUCCEESS,
+    });
+  } catch (error) {
+    dispatch({
+      type: ORDER_DELETE_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message

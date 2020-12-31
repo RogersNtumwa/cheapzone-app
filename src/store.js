@@ -15,6 +15,7 @@ import {
   PlaceOrderReducer,
   OrderDetailsReducer,
   OrderReducer,
+  deleteOrderReducer,
 } from "./reducers/order";
 import { Users } from "./reducers/users";
 import { categoryListReducer } from "./reducers/category";
@@ -48,6 +49,7 @@ const reducer = combineReducers({
   editProduct: editProductReducer,
   relatedProducts: relatedProductsReducer,
   orderlist: OrderReducer,
+  deleteOrder: deleteOrderReducer,
 });
 
 const store = createStore(

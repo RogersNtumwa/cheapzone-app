@@ -7,6 +7,9 @@ import {
   ORDER_DETAILS_FAIL,
   ORDER_SUCCESS,
   ORDER_FAIL,
+  ORDER_DELETE_REQUEST,
+  ORDER_DELETE_SUCCEESS,
+  ORDER_DELETE_FAIL,
 } from "../actions/types";
 
 export const OrderReducer = (state = { loading: true, orders: [] }, action) => {
@@ -73,6 +76,27 @@ export const OrderDetailsReducer = (state = inititalState, action) => {
         error: payload,
       };
 
+    default:
+      return state;
+  }
+};
+
+export const deleteOrderReducer = (state = {}, action) => {
+  const { type, payload } = action;
+
+  switch (type) {
+    case ORDER_DELETE_REQUEST:
+      return { loading: true, ...state };
+    case ORDER_DELETE_SUCCEESS:
+      return {
+        success: true,
+        loading: false,
+      };
+    case ORDER_DELETE_FAIL:
+      return {
+        loading: false,
+        error: payload,
+      };
     default:
       return state;
   }
