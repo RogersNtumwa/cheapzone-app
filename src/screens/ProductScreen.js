@@ -14,6 +14,8 @@ import { useDispatch, useSelector } from "react-redux";
 import Rating from "../components/Rating";
 import { productDetails } from "../actions/product";
 import Product from "../components/Product";
+import SkeletonElments from "../skeleton/SkeletonElments";
+import { SkeletionProductcard } from "../skeleton/SkeletionProductcard";
 
 const ProductScreen = ({ history, match }) => {
   const [qty, setQty] = useState(1);
@@ -34,6 +36,7 @@ const ProductScreen = ({ history, match }) => {
   const addtoCartHandler = () => {
     history.push(`/cart/${match.params.id}?qty=${qty}`);
   };
+  const SkeletonArray = [1, 2, 3, 4];
 
   return (
     <Fragment>
@@ -41,12 +44,37 @@ const ProductScreen = ({ history, match }) => {
         Go Back
       </Link>
       {loading ? (
-        " "
+        <Row>
+          <Col md={6}>
+            <SkeletonElments type="image" />
+          </Col>
+          <Col md={3}>
+            <SkeletonElments type="title" />
+            <SkeletonElments type="text" />
+            <SkeletonElments type="text" />
+            <SkeletonElments type="text" />
+          </Col>
+          <Col md={3}>
+            <Card>
+              <ListGroup variant="flush">
+                <ListGroup.Item>
+                  <SkeletonElments type="text" />
+                </ListGroup.Item>
+                <ListGroup.Item>
+                  <SkeletonElments type="text" />
+                </ListGroup.Item>
+                <ListGroup.Item>
+                  <SkeletonElments type="text" />
+                </ListGroup.Item>
+              </ListGroup>
+            </Card>
+          </Col>
+        </Row>
       ) : (
         <Fragment>
           <Row>
             <Col md={6}>
-              <Image src={product.image} alt={product.title} fluid />
+              <Image src={product.image} alt={product.text} fluid />
             </Col>
             <Col md={3}>
               <ListGroup variant="flush">
@@ -122,7 +150,13 @@ const ProductScreen = ({ history, match }) => {
           <h2>Related Products</h2>
 
           {relatedLoading ? (
-            " "
+            <Row>
+              {SkeletonArray.map((num) => (
+                <Col sm={12} md={6} lg={4} xl={3} key={num}>
+                  <SkeletionProductcard />
+                </Col>
+              ))}
+            </Row>
           ) : (
             <Row>
               {products.data.products.map((product) => (

@@ -102,7 +102,7 @@ export const BestCollection = styled.div`
       padding: 1rem 2rem;
 
       p {
-        font-size: 1rem;
+        font-size: 1.2rem;
         ul {
           list-style-type: none;
           padding: 0;
