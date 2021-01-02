@@ -71,7 +71,7 @@ export const BestCollection = styled.div`
   display: flex;
   flex-direction: column;
   padding: 0 5rem;
-  height: 40rem;
+  /* height: 40rem; */
   width: 100%;
 
   .sectionheader {
@@ -92,7 +92,7 @@ export const BestCollection = styled.div`
     display: flex;
     height: 80%;
     .photo {
-      width: 50%;
+      width: 40%;
       @media screen and (max-width: 978px) {
         width: 100%;
       }
@@ -114,6 +114,7 @@ export const BestCollection = styled.div`
       }
       @media screen and (max-width: 978px) {
         width: 100%;
+        padding: 1rem 0;
       }
     }
     @media screen and (max-width: 978px) {
@@ -123,5 +124,38 @@ export const BestCollection = styled.div`
   }
   @media screen and (max-width: 978px) {
     padding: 0;
+  }
+`;
+
+export const FooterSection = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  margin-top: 1rem;
+  background-color: #f2efe4;
+  /* color: #fff; */
+  padding: 1rem;
+  .Col:nth-child(1) {
+    ul {
+      list-style-type: none;
+      display: flex;
+      padding: 0;
+      li {
+        margin-right: 1rem;
+      }
+    }
+  }
+  .Col:not(:nth-child(1)) {
+    .links {
+      display: flex;
+      flex-direction: column;
+      font-size: 1.2rem;
+    }
+    ul {
+      list-style-type: none;
+      padding: 1rem;
+      li {
+        padding: 0.5rem 0;
+      }
+    }
   }
 `;

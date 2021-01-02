@@ -8,6 +8,7 @@ import {
   HeaderImg,
   Logodiv,
   BestCollection,
+  FooterSection,
 } from "../components/LandingElements";
 import { responsive } from "../utils/Carousel";
 import Carousel from "react-multi-carousel";
@@ -124,6 +125,56 @@ const LandingpageScreen = () => {
           </div>
         </div>
       </BestCollection>
+      <FooterSection>
+        <div className="Col">
+          <h3>CheapZone</h3>
+          <p>
+            Be the first to find out about the axclusive deals, the lastest
+            Sneaker trends{" "}
+          </p>
+          <ul>
+            <li className="social">
+              <a
+                href="https://www.linkedin.com/in/rogers-ntumwa-a1376115b/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <i className="fab fa-linkedin fa-3x"></i>
+              </a>
+            </li>
+            <li>
+              <a
+                href=" https://github.com/RogersNtumwa"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <i class="fab fa-github-square fa-3x"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div className="Col">
+          <h3>Quick Links</h3>
+          <div className="links">
+            <Link to="/">Home</Link>
+            <Link to="/shop">Shop</Link>
+            <Link to="/signin">Sign in</Link>
+          </div>
+        </div>
+        <div className="Col">
+          <h3>Contact Us</h3>
+          <h4>Al Barsha 1</h4>
+          <ul>
+            <li>
+              <i className="fas fa-phone-square-alt fa-2x"></i>: +971 558085053
+            </li>
+            <li>
+              <i className="fas fa-envelope-square fa-2x"></i>:
+              ntumwar@gmail.com
+            </li>
+          </ul>
+        </div>
+      </FooterSection>
     </Fragment>
   );
 };
