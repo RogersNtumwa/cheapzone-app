@@ -7,7 +7,6 @@ import {
   HeaderText,
   HeaderImg,
   Logodiv,
-  BestCollection,
   FooterSection,
 } from "../components/LandingElements";
 import { responsive } from "../utils/Carousel";
@@ -84,47 +83,6 @@ const LandingpageScreen = () => {
           </div>
         </Carousel>
       </Logodiv>
-      <BestCollection>
-        <div className="sectionheader">
-          <h2 className="h2">Best Collection</h2>
-          <p>
-            E-commerce is massively competitive with so many different marketing
-            tactics nowdays,
-            <br />
-            It's a confusing landscape and it;s hard to know waht's best
-          </p>
-        </div>
-        <div className="sectionbody">
-          <div className="photo">
-            <img
-              src="https://res.cloudinary.com/dlloahxji/image/upload/v1609327583/melvin-buezo_a3pr6a.jpg"
-              alt="bestcollection"
-              className="image"
-            />
-          </div>
-          <div className="text">
-            <h2>
-              Summer Collection
-              <br />
-              <span>On Best Fashion Collection Products</span>
-            </h2>
-            <p>
-              Consumers expext to buy now receive tomorrow.
-              <br />
-              Or Buy now and collect from the store tomorrow
-              <ul>
-                <li>-50% on online shopping.</li>
-                <li>50% of online shoppers have used</li>
-                <li>Delivered in less than 48 hours</li>
-              </ul>
-            </p>
-            <Link to="/shop">
-              <button className="btn-large">Shop Now</button>
-            </Link>
-            <span>$47.20</span>
-          </div>
-        </div>
-      </BestCollection>
       <FooterSection>
         <div className="Col">
           <h3>CheapZone</h3>
