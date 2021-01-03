@@ -71,36 +71,3 @@ export const Logodiv = styled.div`
   }
 `;
 
-export const FooterSection = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
-  margin-top: 1rem;
-  background-color: #f2efe4;
-  /* color: #fff; */
-  padding: 1rem;
-  .Col:nth-child(1) {
-    ul {
-      list-style-type: none;
-      display: flex;
-      padding: 0;
-      li {
-        margin-right: 1rem;
-      }
-    }
-  }
-  .Col:not(:nth-child(1)) {
-    .links {
-      display: flex;
-      flex-direction: column;
-      font-size: 1.2rem;
-    }
-    ul {
-      list-style-type: none;
-      justify-content: center;
-      padding: 1rem;
-      li {
-        padding: 0.5rem 0;
-      }
-    }
-  }
-`;
