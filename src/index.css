@@ -64,3 +64,26 @@ button {
   padding: 0;
   margin-top: 0.5rem;
 }
+
+.products {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  grid-gap: 2rem;
+  font-size: inherit;
+  margin-top: 1rem;
+  box-sizing: border-box;
+}
+.product {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  box-shadow: 0 2rem 4rem rgba(233, 245, 240, 0.6);
+  transition: all 0.2s;
+}
+.product .product__card-img {
+  width: 100%;
+  grid-column: 1 / span 2;
+  overflow: hidden;
+}
+.products .product:hover {
+  transform: translateY(-1rem);
+}

@@ -57,13 +57,11 @@ const HomeScreen = ({ match }) => {
         </Row>
       ) : (
         //we shall implemented error messsage here
-        <Row>
+        <div className="products">
           {products.data.products.map((product) => (
-            <Col sm={12} md={6} lg={4} xl={3} key={product._id}>
-              <Product product={product} />
-            </Col>
+            <Product product={product} />
           ))}
-        </Row>
+        </div>
       )}
     </Fragment>
   );
