@@ -6,7 +6,6 @@ export const HeaderSection = styled.div`
   height: 80vh;
   font-size: 1.6rem;
   background-color: #f7f4f0;
-  z-index: 10;
   @media screen and (max-width: 600px) {
     flex-direction: column;
     height: 90vh;
@@ -19,6 +18,7 @@ export const HeaderText = styled.div`
   justify-content: center;
   padding: 1rem;
   width: 50%;
+
   h2 {
     font-size: 3.5rem;
     @media screen and (max-width: 700px) {
@@ -46,7 +46,6 @@ export const HeaderImg = styled.div`
 
   @media screen and (max-width: 978px) {
     width: 100%;
-    /* margin-top: 1rem; */
   }
 `;
 
@@ -70,4 +69,3 @@ export const Logodiv = styled.div`
     }
   }
 `;
-

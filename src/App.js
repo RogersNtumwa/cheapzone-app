@@ -17,6 +17,7 @@ import ProductlistScreen from "./screens/ProductlistScreen";
 import ProductEditScreen from "./screens/ProductEditScreen";
 import LandingpageScreen from "./screens/LandingpageScreen";
 import OrderlistScreen from "./screens/OrderlistScreen";
+import AddProductScreen from "./screens/AddProductScreen";
 const App = () => {
   return (
     <Router>
@@ -47,6 +48,7 @@ const App = () => {
             component={ProductEditScreen}
             exact
           />
+          <Route path="/admin/product/add" component={AddProductScreen} exact />
         </Container>
       </main>
       <Footer />

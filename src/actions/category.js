@@ -1,13 +1,12 @@
 import axios from "axios";
-import {
-  CATEGORY_LIST_SUCCESS,
-  CATEGORY_LIST_REQUEST,
-  CATEGORY_LIST_FAIL,
-} from "./types";
+import setAuthToken from "../utils/setAuthToken";
+import { CATEGORY_LIST_SUCCESS, CATEGORY_LIST_FAIL } from "./types";
 
 export const listCategories = () => async (dispatch) => {
-  dispatch({ type: CATEGORY_LIST_REQUEST });
   try {
+    if (localStorage.token) {
+      setAuthToken(localStorage.token);
+    }
     const { data } = await axios.get(
       "https://cheapzone-api.herokuapp.com/api/v1/category"
     );

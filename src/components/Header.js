@@ -14,7 +14,7 @@ const Header = () => {
   const logoutHandler = () => {
     dispatch(logOut());
   };
-  console.log(userInfo.user);
+  // console.log(userInfo.user);
   return (
     <header>
       <Navbar bg="dark" variant="dark" expand="lg" collapseOnSelect>

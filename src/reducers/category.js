@@ -1,12 +1,9 @@
-import {
-  CATEGORY_LIST_FAIL,
-  CATEGORY_LIST_SUCCESS,
-  CATEGORY_LIST_REQUEST,
-} from "../actions/types";
+import { CATEGORY_LIST_FAIL, CATEGORY_LIST_SUCCESS } from "../actions/types";
 
 const initialState = {
   categories: [],
   errror: {},
+  loading: true,
 };
 
 export const categoryListReducer = (
@@ -14,10 +11,6 @@ export const categoryListReducer = (
   { type, payload }
 ) => {
   switch (type) {
-    case CATEGORY_LIST_REQUEST:
-      return {
-        loading: true,
-      };
     case CATEGORY_LIST_SUCCESS:
       return {
         ...state,

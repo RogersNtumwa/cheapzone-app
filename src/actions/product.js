@@ -20,6 +20,8 @@ import {
 import axios from "axios";
 import setAuthToken from "../utils/setAuthToken";
 
+// Desc: Gets all products
+// access: public
 export const listProducts = (keyword = "") => async (dispatch) => {
   try {
     const { data } = await axios.get(
@@ -85,14 +87,32 @@ export const deleteproduct = (id) => async (dispatch) => {
   }
 };
 
-export const createProduct = (formdata) => async (dispatch) => {
+export const createProduct = ({
+  title,
+  price,
+  brand,
+  quantity,
+  description,
+  category,
+  rating,
+  image,
+}) => async (dispatch) => {
   dispatch({ type: PRODUCT_CREATE_REQUEST });
   const config = {
     headers: {
       "Content-Type": "application/json",
     },
   };
-  const body = JSON.stringify(formdata);
+  const body = JSON.stringify({
+    title,
+    price,
+    brand,
+    quantity,
+    description,
+    category,
+    rating,
+    image,
+  });
   try {
     if (localStorage.token) {
       setAuthToken(localStorage.token);

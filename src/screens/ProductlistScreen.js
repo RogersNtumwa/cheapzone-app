@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Table, Button, Row, Col } from "react-bootstrap";
 import { listProducts, deleteproduct } from "../actions/product";
 import { LinkContainer } from "react-router-bootstrap";
+import { Link } from "react-router-dom";
 
 const ProductlistScreen = ({ history, match }) => {
   const dispatch = useDispatch();
@@ -29,9 +30,9 @@ const ProductlistScreen = ({ history, match }) => {
     }
   };
 
-  const createProductHandler = () => {
-    //   we call create product action here
-  };
+  // const createProductHandler = () => {
+  //   //   we call create product action here
+  // };
 
   return (
     <Fragment>
@@ -40,9 +41,11 @@ const ProductlistScreen = ({ history, match }) => {
           <h1>Products List</h1>
         </Col>
         <Col className="text-right">
-          <Button className="my-3" onClick={createProductHandler}>
-            <i className="fas fa-plus"></i> Add Product
-          </Button>
+          <Link to="/admin/product/add">
+            <Button className="my-3">
+              <i className="fas fa-plus"></i> Add Product
+            </Button>
+          </Link>
         </Col>
       </Row>
 
