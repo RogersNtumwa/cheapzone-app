@@ -1,11 +1,14 @@
-import React, { useEffect, Fragment } from "react";
+import React, { useEffect, Fragment, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Table, Button } from "react-bootstrap";
+import { Table, Button, Row } from "react-bootstrap";
 
 import { getUsers } from "../actions/users";
+import AdminSearch from "../components/AdminSearch";
 
 const UserScreen = ({ history }) => {
   const dispatch = useDispatch();
+
+  const [keyword, setKeyword] = useState("");
 
   const userlist = useSelector((state) => state.userList);
   const userinfo = useSelector((state) => state.auth);
@@ -24,9 +27,14 @@ const UserScreen = ({ history }) => {
     console.log("delete user");
   };
 
+  const searched = (keyword) => (c) => c.name.toLowerCase().includes(keyword);
+
   return (
     <Fragment>
       <h1>Users</h1>
+      <Row>
+        <AdminSearch keyword={keyword} setKeyword={setKeyword} />
+      </Row>
       {loading ? (
         "loading..."
       ) : (
@@ -43,7 +51,7 @@ const UserScreen = ({ history }) => {
             </tr>
           </thead>
           <tbody>
-            {users.map((user) => (
+            {users.filter(searched(keyword)).map((user) => (
               <tr key={user._id}>
                 <td>{user._id}</td>
                 <td>{user.name}</td>

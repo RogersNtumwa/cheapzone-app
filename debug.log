@@ -25,3 +25,6 @@
 [0106/132010.847:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
 [0111/134856.209:ERROR:filesystem_win.cc(129)] GetFileAttributes C:\Users\acer\AppData\Local\Google\Chrome\User Data\Crashpad\attachments\99597442-497f-483f-97c7-160cfc32d254: The system cannot find the path specified. (0x3)
 [0111/134916.351:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
+[0111/145638.457:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
+[0111/150058.973:ERROR:filesystem_win.cc(129)] GetFileAttributes C:\Users\acer\AppData\Local\Google\Chrome\User Data\Crashpad\attachments\c9bbd5e8-871f-424c-ac0d-9878a7089a1a: The system cannot find the path specified. (0x3)
+[0111/165028.193:ERROR:filesystem_win.cc(129)] GetFileAttributes C:\Users\acer\AppData\Local\Google\Chrome\User Data\Crashpad\attachments\962f7e02-fb9a-4b92-80a3-5704e94270eb: The system cannot find the path specified. (0x3)

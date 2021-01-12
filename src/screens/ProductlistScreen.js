@@ -1,11 +1,14 @@
-import React, { useEffect, Fragment } from "react";
+import React, { useEffect, Fragment, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Table, Button, Row, Col } from "react-bootstrap";
 import { listProducts, deleteproduct } from "../actions/product";
 import { LinkContainer } from "react-router-bootstrap";
 import { Link } from "react-router-dom";
+import AdminSearch from "../components/AdminSearch";
 
 const ProductlistScreen = ({ history, match }) => {
+  const [keyword, setKeyword] = useState("");
+
   const dispatch = useDispatch();
 
   const productlist = useSelector((state) => state.products);
@@ -30,9 +33,7 @@ const ProductlistScreen = ({ history, match }) => {
     }
   };
 
-  // const createProductHandler = () => {
-  //   //   we call create product action here
-  // };
+  const searched = (keyword) => (c) => c.title.toLowerCase().includes(keyword);
 
   return (
     <Fragment>
@@ -48,7 +49,9 @@ const ProductlistScreen = ({ history, match }) => {
           </Link>
         </Col>
       </Row>
-
+      <Row>
+        <AdminSearch keyword={keyword} setKeyword={setKeyword} />
+      </Row>
       {loading ? (
         "loading..."
       ) : (
@@ -65,7 +68,7 @@ const ProductlistScreen = ({ history, match }) => {
             </tr>
           </thead>
           <tbody>
-            {products.data.products.map((product) => (
+            {products.data.products.filter(searched(keyword)).map((product) => (
               <tr key={product._id}>
                 <td>{product._id}</td>
                 <td>{product.title}</td>

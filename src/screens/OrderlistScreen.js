@@ -1,11 +1,14 @@
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Table, Button, Row, Col } from "react-bootstrap";
 
 import { getOrders, deleteOrder } from "../actions/order";
+import AdminSearch from "../components/AdminSearch";
 
 const OrderlistScreen = ({ history }) => {
   const dispatch = useDispatch();
+
+  const [keyword, setKeyword] = useState("");
 
   const orderlist = useSelector((state) => state.orderlist);
   const deleteOrders = useSelector((state) => state.deleteOrder);
@@ -31,6 +34,9 @@ const OrderlistScreen = ({ history }) => {
     }
   };
 
+  const searched = (keyword) => (c) =>
+    c.user.name.toLowerCase().includes(keyword);
+
   return (
     <Fragment>
       <Row className="align-items-center">
@@ -39,6 +45,9 @@ const OrderlistScreen = ({ history }) => {
         </Col>
       </Row>
 
+      <Row>
+        <AdminSearch keyword={keyword} setKeyword={setKeyword} />
+      </Row>
       {loading ? (
         "loading..."
       ) : (
@@ -57,7 +66,7 @@ const OrderlistScreen = ({ history }) => {
             </tr>
           </thead>
           <tbody>
-            {orders.map((order) => (
+            {orders.filter(searched(keyword)).map((order) => (
               <tr key={order._id}>
                 <td>{order._id}</td>
                 <td>{order.user.name}</td>
