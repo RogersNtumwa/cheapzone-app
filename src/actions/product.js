@@ -87,36 +87,18 @@ export const deleteproduct = (id) => async (dispatch) => {
   }
 };
 
-export const createProduct = ({
-  title,
-  price,
-  brand,
-  quantity,
-  description,
-  category,
-  rating,
-  image,
-}) => async (dispatch) => {
+export const createProduct = (formData) => async (dispatch) => {
   dispatch({ type: PRODUCT_CREATE_REQUEST });
-  const config = {
-    headers: {
-      "Content-Type": "application/json",
-    },
-  };
-  const body = JSON.stringify({
-    title,
-    price,
-    brand,
-    quantity,
-    description,
-    category,
-    rating,
-    image,
-  });
   try {
     if (localStorage.token) {
       setAuthToken(localStorage.token);
     }
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    const body = JSON.stringify(formData);
     const { data } = await axios.post(
       "https://cheapzone-api.herokuapp.com/api/v1/products",
       body,

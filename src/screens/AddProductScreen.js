@@ -8,14 +8,17 @@ import { listCategories } from "../actions/category";
 import { createProduct } from "../actions/product";
 
 const AddProductScreen = ({ history }) => {
-  const [title, setTitle] = useState("");
-  const [price, setPrice] = useState(0);
-  const [brand, setBrand] = useState("");
-  const [quantity, setQuantity] = useState("");
-  const [description, setDescription] = useState("");
-  const [category, setCategory] = useState("");
-  const [rating, setRating] = useState("");
-  const [image, setImage] = useState("");
+  const [formData, setformData] = useState({});
+  // const [title, setTitle] = useState("");
+  // const [description, setDescription] = useState("");
+  // const [price, setPrice] = useState("");
+  // const [brand, setBrand] = useState("");
+  // const [category, setCategory] = useState("");
+  // const [quantity, setQuantity] = useState("");
+  const [images, setImages] = useState([]);
+  const [previeImages, setpreviewImages] = useState([]);
+
+  const { title, description, category, price, brand, quantity } = formData;
 
   const categoryList = useSelector((state) => state.categoryState);
   const { loading, categories } = categoryList;
@@ -25,24 +28,50 @@ const AddProductScreen = ({ history }) => {
 
   const dispatch = useDispatch();
 
-  // const handleSelect = (e) => {};
-
   const onSubmitHandlerHandler = (e) => {
     e.preventDefault();
-    dispatch(
-      createProduct({
-        title,
-        price,
-        brand,
-        quantity,
-        description,
-        category,
-        rating,
-        image,
-      })
-    );
 
+    // let formData = new FormData();
+    // formData.set("title", title);
+    // formData.set("description", description);
+    // formData.set("category", category);
+    // formData.set("price", price);
+    // formData.set("brand", brand);
+    // formData.set("quantity", quantity);
+
+    // images.forEach((image) => {
+    //   formimages.push(image);
+    // });
+    // images.forEach((image) => {
+    //   formData.append("images", image);
+    // });
+    formData.images = images;
+    console.log(formData);
+    dispatch(createProduct(formData));
+
+    // // redirecting not working fine yet
     success && history.push("/shop");
+  };
+
+  const handleChange = (e) => {
+    setformData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const onchangeimage = (e) => {
+    const files = Array.from(e.target.files);
+    setpreviewImages([]);
+    setImages([]);
+
+    files.forEach((file) => {
+      const reader = new FileReader();
+      reader.onload = () => {
+        if (reader.readyState === 2) {
+          setpreviewImages((oldArray) => [...oldArray, reader.result]);
+          setImages((oldArray) => [...oldArray, reader.result]);
+        }
+      };
+      reader.readAsDataURL(file);
+    });
   };
 
   useEffect(() => {
@@ -65,8 +94,10 @@ const AddProductScreen = ({ history }) => {
               <Form.Control
                 type="text"
                 placeholder="Enter Product Title"
+                name="title"
                 value={title}
-                onChange={(e) => setTitle(e.target.value)}
+                // onChange={(e) => setTitle(e.target.value)}
+                onChange={handleChange}
               ></Form.Control>
             </Form.Group>
             <Form.Group controlId="price">
@@ -74,8 +105,10 @@ const AddProductScreen = ({ history }) => {
               <Form.Control
                 type="number"
                 placeholder="Enter Product price"
+                name="price"
                 value={price}
-                onChange={(e) => setPrice(e.target.value)}
+                // onChange={(e) => setPrice(e.target.value)}
+                onChange={handleChange}
               ></Form.Control>
             </Form.Group>
             <Form.Group controlId="brand">
@@ -83,8 +116,10 @@ const AddProductScreen = ({ history }) => {
               <Form.Control
                 type="text"
                 placeholder="Enter Product brand"
+                name="brand"
                 value={brand}
-                onChange={(e) => setBrand(e.target.value)}
+                // onChange={(e) => setBrand(e.target.value)}
+                onChange={handleChange}
               ></Form.Control>
             </Form.Group>
             <Form.Group controlId="quantity">
@@ -92,8 +127,10 @@ const AddProductScreen = ({ history }) => {
               <Form.Control
                 type="text"
                 placeholder="Enter Product quantity"
+                name="quantity"
                 value={quantity}
-                onChange={(e) => setQuantity(e.target.value)}
+                // onChange={(e) => setQuantity(e.target.value)}
+                onChange={handleChange}
               ></Form.Control>
             </Form.Group>
             <Form.Group controlId="description">
@@ -101,40 +138,60 @@ const AddProductScreen = ({ history }) => {
               <Form.Control
                 type="text"
                 placeholder="Enter Product description"
+                name="description"
                 value={description}
-                onChange={(e) => setDescription(e.target.value)}
+                // onChange={(e) => setDescription(e.target.value)}
+                onChange={handleChange}
               ></Form.Control>
             </Form.Group>
-            <Form.Group controlId="rating">
+            {/* <Form.Group controlId="rating">
               <Form.Label>Rating</Form.Label>
               <Form.Control
                 type="text"
                 placeholder="Enter Product rating"
+                  name="rating"
                 value={rating}
-                onChange={(e) => setRating(e.target.value)}
+                onChange={handleChange}
               ></Form.Control>
-            </Form.Group>
+            </Form.Group> */}
 
             <Form.Group controlId="category">
               <Form.Label>Select category</Form.Label>
               <Form.Control
                 as="select"
+                name="category"
                 value={category}
-                onChange={(e) => setCategory(e.target.value)}
+                // onChange={(e) => setCategory(e.target.value)}
+                onChange={handleChange}
               >
-                {categories.data.categories.map((categoryitem) => (
-                  <option key={categoryitem._id} value={categoryitem._id}>
-                    {categoryitem.name}
-                  </option>
-                ))}
+                <Fragment>
+                  <option>Select category</option>
+                  {categories.data.categories.map((categoryitem) => (
+                    <option key={categoryitem._id} value={categoryitem._id}>
+                      {categoryitem.name}
+                    </option>
+                  ))}
+                </Fragment>
               </Form.Control>
             </Form.Group>
             <Form.Group>
               <Form.File
                 id="productImage"
                 label="Image"
-                onChange={(event) => setImage(event.target.files[0])}
+                name="images"
+                onChange={onchangeimage}
+                multiple
               />
+              {previeImages.map((image) => (
+                <img
+                  src={image}
+                  key={image}
+                  alt="previewimage"
+                  className="mt-3 mr-2"
+                  height="52"
+                  width="55"
+                />
+              ))}
             </Form.Group>
             <Button type="submit" variant="primary">
               Add Product

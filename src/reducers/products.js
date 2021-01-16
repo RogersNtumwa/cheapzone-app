@@ -87,7 +87,10 @@ export const deleteProductReducer = (state = {}, action) => {
       return state;
   }
 };
-export const createProductReducer = (state = {}, action) => {
+export const createProductReducer = (
+  state = { success: false, product: [] },
+  action
+) => {
   const { type, payload } = action;
 
   switch (type) {

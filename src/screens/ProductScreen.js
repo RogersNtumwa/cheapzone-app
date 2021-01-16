@@ -8,6 +8,7 @@ import {
   Card,
   Button,
   Form,
+  Carousel,
 } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -30,7 +31,7 @@ const ProductScreen = ({ history, match }) => {
 
   const { product, loading } = productDetailsList;
   const { products, loading: relatedLoading } = relatedProducts;
-  console.log(products);
+  console.log(product);
   console.log(relatedLoading);
 
   const addtoCartHandler = () => {
@@ -74,7 +75,18 @@ const ProductScreen = ({ history, match }) => {
         <Fragment>
           <Row>
             <Col md={6}>
-              <Image src={product.image} alt={product.text} fluid />
+              <Carousel>
+                {product.images &&
+                  product.images.map((image) => (
+                    <Carousel.Item>
+                      <Image src={image.uri} alt={product.text} fluid />
+                      <Carousel.Caption>
+                        <h3>{product.title}</h3>
+                      </Carousel.Caption>
+                    </Carousel.Item>
+                  ))}
+              </Carousel>
+              {/* <Image src={product.image} alt={product.text} fluid /> */}
             </Col>
             <Col md={3}>
               <ListGroup variant="flush">
@@ -159,11 +171,12 @@ const ProductScreen = ({ history, match }) => {
             </Row>
           ) : (
             <Row>
-              {products.data.products.map((product) => (
-                <Col sm={12} md={6} lg={4} xl={3} key={product._id}>
-                  <Product product={product} />
-                </Col>
-              ))}
+              {products &&
+                products.data.products.map((product) => (
+                  <Col sm={12} md={6} lg={4} xl={3} key={product._id}>
+                    <Product product={product} />
+                  </Col>
+                ))}
             </Row>
           )}
         </Fragment>
