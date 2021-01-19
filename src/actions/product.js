@@ -16,6 +16,9 @@ import {
   RELATED_PRODUCT_REQUEST,
   RELATED_PRODUCT_SUCCESS,
   RELATED_PRODUCT_FAIL,
+  REVIEW_PRODUCT_REQUEST,
+  REVIEW_PRODUCT_SUCCESS,
+  REVIEW_PRODUCT_FAIL,
 } from "./types";
 import axios from "axios";
 import setAuthToken from "../utils/setAuthToken";
@@ -126,7 +129,7 @@ export const updateProduct = (product) => async (dispatch, getstate) => {
       },
     };
 
-    const { data } = await axios.patch(
+    const { data } = await axios.put(
       `https://cheapzone-api.herokuapp.com/api/v1/products/${product._id}`,
       product,
       config
@@ -159,6 +162,42 @@ export const getRelatedProducts = (id) => async (dispatch) => {
         error.response && error.response.data.message
           ? error.response.data.message
           : error.message,
+    });
+  }
+};
+
+export const newReview = (formData) => async (dispatch) => {
+  dispatch({
+    type: REVIEW_PRODUCT_REQUEST,
+  });
+  try {
+    if (localStorage.token) {
+      setAuthToken(localStorage.token);
+    }
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    const body = JSON.stringify(formData);
+    console.log(formData);
+
+    const { data } = await axios.put(
+      `https://cheapzone-api.herokuapp.com/api/v1/products/${formData.id}/review`,
+      body,
+      config
+    );
+    dispatch({
+      type: REVIEW_PRODUCT_SUCCESS,
+      payload: data,
+    });
+  } catch (err) {
+    dispatch({
+      type: REVIEW_PRODUCT_FAIL,
+      payload:
+        err.response && err.response.data.message
+          ? err.response.data.message
+          : err.message,
     });
   }
 };

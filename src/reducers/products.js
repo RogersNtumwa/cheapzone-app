@@ -17,6 +17,9 @@ import {
   RELATED_PRODUCT_REQUEST,
   RELATED_PRODUCT_FAIL,
   RELATED_PRODUCT_SUCCESS,
+  REVIEW_PRODUCT_REQUEST,
+  REVIEW_PRODUCT_SUCCESS,
+  REVIEW_PRODUCT_FAIL,
 } from "../actions/types";
 const initialState = {
   products: [],
@@ -162,5 +165,32 @@ export const relatedProductsReducer = (
 
     default:
       return state;
+  }
+};
+
+export const reviewProdutReducer = (state = {}, action) => {
+  const { type, payload } = action;
+
+  switch (type) {
+    case REVIEW_PRODUCT_REQUEST:
+      return {
+        loading: true,
+      };
+
+    case REVIEW_PRODUCT_SUCCESS:
+      return {
+        ...state,
+        review: payload,
+        loading: false,
+      };
+    case REVIEW_PRODUCT_FAIL:
+      return {
+        ...state,
+        loading: false,
+        error: payload,
+      };
+
+    default:
+      break;
   }
 };

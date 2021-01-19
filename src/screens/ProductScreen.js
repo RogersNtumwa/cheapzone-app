@@ -17,6 +17,7 @@ import { productDetails } from "../actions/product";
 import Product from "../components/Product";
 import SkeletonElments from "../skeleton/SkeletonElments";
 import { SkeletionProductcard } from "../skeleton/SkeletionProductcard";
+import Model from "../components/Model";
 
 const ProductScreen = ({ history, match }) => {
   const [qty, setQty] = useState(1);
@@ -31,8 +32,6 @@ const ProductScreen = ({ history, match }) => {
 
   const { product, loading } = productDetailsList;
   const { products, loading: relatedLoading } = relatedProducts;
-  console.log(product);
-  console.log(relatedLoading);
 
   const addtoCartHandler = () => {
     history.push(`/cart/${match.params.id}?qty=${qty}`);
@@ -96,12 +95,15 @@ const ProductScreen = ({ history, match }) => {
                 <ListGroup.Item>
                   <Rating
                     value={product.rating}
-                    text={`${product.numReviews} reviews`}
+                    text={`${product.numOfReviews} reviews`}
                   />
                 </ListGroup.Item>
                 <ListGroup.Item>Price: ${product.price}</ListGroup.Item>
                 <ListGroup.Item>
                   Description: {product.description}
+                </ListGroup.Item>
+                <ListGroup.Item>
+                  <Model id={product._id} history={history} />
                 </ListGroup.Item>
               </ListGroup>
             </Col>
