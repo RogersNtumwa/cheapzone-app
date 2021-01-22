@@ -25,10 +25,11 @@ import setAuthToken from "../utils/setAuthToken";
 
 // Desc: Gets all products
 // access: public
-export const listProducts = (keyword = "") => async (dispatch) => {
+export const listProducts = (keyword = "", currentPage) => async (dispatch) => {
   try {
     const { data } = await axios.get(
-      `https://cheapzone-api.herokuapp.com/api/v1/products?keyword=${keyword}`
+      `https://cheapzone-api.herokuapp.com/api/v1/products?keyword=${keyword}&page=${currentPage}`
+      // `https://cheapzone-api.herokuapp.com/api/v1/products?keyword=${keyword}`
     );
     dispatch({
       type: PRODUCT_LIST_SUCCESS,
@@ -123,6 +124,10 @@ export const updateProduct = (product) => async (dispatch, getstate) => {
     type: PRODUCT_UPDATE_REQUEST,
   });
   try {
+    if (localStorage.token) {
+      setAuthToken(localStorage.token);
+    }
+
     const config = {
       headers: {
         "Content-Type": "application/json",

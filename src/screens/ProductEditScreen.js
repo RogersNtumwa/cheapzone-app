@@ -49,7 +49,7 @@ const ProductEditScreen = ({ match, history }) => {
 
   const onSubmitHandlerHandler = (e) => {
     e.preventDefault();
-    updateProduct({
+    dispatch( updateProduct({
       _id: productId,
       title,
       price,
@@ -58,7 +58,7 @@ const ProductEditScreen = ({ match, history }) => {
       rating,
       description,
       category,
-    });
+    }));
   };
 
   return (

@@ -1,8 +1,9 @@
-import React, { useEffect, Fragment } from "react";
+import React, { useEffect, useState, Fragment } from "react";
 import { Col, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+import Pagination from "react-js-pagination";
 
 import { responsive } from "../utils/Carousel";
 import Product from "../components/Product";
@@ -22,9 +23,16 @@ const HomeScreen = ({ match }) => {
   const { loading, products } = productList;
   const SkeletonArray = [1, 2, 3, 4, 5, 6, 7, 8];
 
+  const [currentPage, setCurrentPage] = useState(1);
+
+  function setCurrentPageNumber(pageNumber) {
+    setCurrentPage(pageNumber);
+  }
+
   useEffect(() => {
-    dispatch(listProducts(keyword));
-  }, [dispatch, keyword]);
+    dispatch(listProducts(keyword, currentPage));
+  }, [dispatch, keyword, currentPage]);
+
   // : error ? (
   //         <Message variant="danger">{error}</Message>
   //       )
@@ -57,11 +65,29 @@ const HomeScreen = ({ match }) => {
         </Row>
       ) : (
         //we shall implemented error messsage here
-        <div className="products">
-          {products.data.products.map((product) => (
-            <Product product={product} />
-          ))}
-        </div>
+        <Fragment>
+          <div className="products">
+            {products.data.products.map((product) => (
+              <Product product={product} />
+            ))}
+          </div>
+          {products.count > products.resPerpage && (
+            <div className="d-flex justify-content-center mt-5">
+              <Pagination
+                activePage={currentPage}
+                itemsCountPerPage={products.resPerpage}
+                totalItemsCount={products.count}
+                onChange={setCurrentPageNumber}
+                nextPageText={"Next"}
+                prevPageText={"Prev"}
+                firstPageText={"first"}
+                lastPageText={"Last"}
+                itemClass="page-itme"
+                linkClass="page-link"
+              />
+            </div>
+          )}
+        </Fragment>
       )}
     </Fragment>
   );

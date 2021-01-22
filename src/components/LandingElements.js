@@ -6,6 +6,7 @@ export const HeaderSection = styled.div`
   height: 80vh;
   font-size: 1.6rem;
   background-color: #f7f4f0;
+  z-index: 1000;
   @media screen and (max-width: 600px) {
     flex-direction: column;
     height: 90vh;
@@ -50,9 +51,9 @@ export const HeaderImg = styled.div`
 `;
 
 export const Logodiv = styled.div`
-  height: 5rem;
+  height: 3rem;
   transform: translateY(-3.5rem);
-  width: 70%;
+  width: 100%;
   float: right;
 
   @media screen and (max-width: 978px) {
