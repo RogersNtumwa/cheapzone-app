@@ -37,11 +37,15 @@ export const PlaceOrderReducer = (state = {}, action) => {
         loading: true,
       };
     case ORDER_CREATE_SUCCESS:
+      localStorage.removeItem("paymentMethod");
+      localStorage.removeItem("cartItems");
+      localStorage.removeItem("shippingAddress");
       return {
         loading: false,
         success: true,
         order: payload,
       };
+
     case ORDER_CREATE_FAIL:
       return {
         loading: false,

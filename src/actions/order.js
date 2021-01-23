@@ -49,7 +49,6 @@ export const createOrder = (formData) => async (dispatch) => {
       },
     };
     const body = JSON.stringify(formData);
-    console.log(body);
 
     const { data } = await axios.post(
       "https://cheapzone-api.herokuapp.com/api/v1/orders",
