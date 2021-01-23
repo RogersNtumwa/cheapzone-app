@@ -49,12 +49,18 @@ export const createOrder = (formData) => async (dispatch) => {
       },
     };
     const body = JSON.stringify(formData);
+    console.log(body);
 
     const { data } = await axios.post(
-      "https://cheapzone-api.herokuapp.com/api/v1/orders",
+      "http://localhost:5000/api/v1/orders",
       body,
       config
     );
+    // const { data } = await axios.post(
+    //   "https://cheapzone-api.herokuapp.com/api/v1/orders",
+    //   body,
+    //   config
+    // );
     dispatch({
       type: ORDER_CREATE_SUCCESS,
       payload: data.order,

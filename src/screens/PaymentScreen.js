@@ -6,7 +6,7 @@ import FormContainer from "../components/FormContainer";
 import CheckOutstep from "../components/CheckOutstep";
 
 const PaymentScreen = ({ history }) => {
-  const [paymentMethod, setPaymentMethod] = useState("CashOnDelivery");
+  const [paymentMethod, setPaymentMethod] = useState("cashOnDelivery");
 
   const cart = useSelector((state) => state.cart);
   const { shippingAddress } = cart;
@@ -34,9 +34,9 @@ const PaymentScreen = ({ history }) => {
               label="Cash On Delivery"
               id="cash"
               name="paymentMethod"
-              value="cashOnDelivery"
+              value="cashDelivery"
               checked
-              onChanged={(e) => setPaymentMethod(e.target.value)}
+              onChange={(e) => setPaymentMethod(e.target.value)}
             ></Form.Check>
             <Form.Check
               type="radio"
@@ -44,7 +44,7 @@ const PaymentScreen = ({ history }) => {
               id="paypal"
               name="paymentMethod"
               value="payPal"
-              onChanged={(e) => setPaymentMethod(e.target.value)}
+              onChange={(e) => setPaymentMethod(e.target.value)}
             ></Form.Check>
           </Col>
         </Form.Group>
