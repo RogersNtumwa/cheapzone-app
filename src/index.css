@@ -87,3 +87,10 @@ button {
 .products .product:hover {
   transform: translateY(-1rem);
 }
+
+.alert .aler-danger {
+  background-color: #ff0000;
+}
+.alert .aler-success {
+  background-color: #45c561ce;
+}

@@ -9,6 +9,7 @@ import {
   USER_LOGOUT,
 } from "./types";
 import setAuthToken from "../utils/setAuthToken";
+import { setAlert } from "./alert";
 
 export const registerUser = ({ name, email, password }) => async (dispatch) => {
   const config = {
@@ -29,6 +30,10 @@ export const registerUser = ({ name, email, password }) => async (dispatch) => {
     });
     dispatch(loadUser());
   } catch (err) {
+    const errors = err.response.data.errors;
+    if (errors) {
+      errors.forEach((error) => dispatch(setAlert(error.msg, "danger")));
+    }
     dispatch({
       type: REGISTER_FAIL,
     });
@@ -54,6 +59,10 @@ export const userLogin = (email, password) => async (dispatch) => {
     });
     dispatch(loadUser());
   } catch (err) {
+    const errors = err.response.data.errors;
+    if (errors) {
+      errors.forEach((error) => dispatch(setAlert(error.msg, "danger")));
+    }
     dispatch({
       type: LOGIN_FAIL,
     });

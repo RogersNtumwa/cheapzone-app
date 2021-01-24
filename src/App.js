@@ -18,11 +18,14 @@ import ProductEditScreen from "./screens/ProductEditScreen";
 import LandingpageScreen from "./screens/LandingpageScreen";
 import OrderlistScreen from "./screens/OrderlistScreen";
 import AddProductScreen from "./screens/AddProductScreen";
+import Alert from "./components/Alert";
+
 const App = () => {
   return (
     <Router>
       <Header />
       <main className="py-3">
+        <Alert />
         <Container>
           <Route path="/" component={LandingpageScreen} exact />
           <Route path="/search/:keyword" component={HomeScreen} />

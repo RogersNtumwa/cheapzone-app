@@ -19,6 +19,7 @@ import {
 } from "./reducers/order";
 import { Users } from "./reducers/users";
 import { categoryListReducer } from "./reducers/category";
+import alertReducer from "./reducers/alert";
 
 const cartItemsFromStorage = localStorage.getItem("cartItems")
   ? JSON.parse(localStorage.getItem("cartItems"))
@@ -50,6 +51,7 @@ const reducer = combineReducers({
   relatedProducts: relatedProductsReducer,
   orderlist: OrderReducer,
   deleteOrder: deleteOrderReducer,
+  alert: alertReducer,
 });
 
 const store = createStore(

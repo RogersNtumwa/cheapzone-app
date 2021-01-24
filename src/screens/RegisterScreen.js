@@ -5,6 +5,7 @@ import { Button, Form, Row, Col } from "react-bootstrap";
 
 import FormContainer from "../components/FormContainer";
 import { registerUser } from "../actions/auth";
+import { setAlert } from "../actions/alert";
 
 const RegisterScreen = ({ history, location }) => {
   const [email, setEmail] = useState("");
@@ -18,6 +19,9 @@ const RegisterScreen = ({ history, location }) => {
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
+    if (password !== confirmPassword) {
+      dispatch(setAlert("Passwords don't match", "danger"));
+    }
     dispatch(registerUser({ name, email, password }));
   };
 
