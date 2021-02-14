@@ -9,12 +9,7 @@ import { createProduct } from "../actions/product";
 
 const AddProductScreen = ({ history }) => {
   const [formData, setformData] = useState({});
-  // const [title, setTitle] = useState("");
-  // const [description, setDescription] = useState("");
-  // const [price, setPrice] = useState("");
-  // const [brand, setBrand] = useState("");
-  // const [category, setCategory] = useState("");
-  // const [quantity, setQuantity] = useState("");
+  
   const [images, setImages] = useState([]);
   const [previeImages, setpreviewImages] = useState([]);
 
@@ -31,20 +26,6 @@ const AddProductScreen = ({ history }) => {
   const onSubmitHandlerHandler = (e) => {
     e.preventDefault();
 
-    // let formData = new FormData();
-    // formData.set("title", title);
-    // formData.set("description", description);
-    // formData.set("category", category);
-    // formData.set("price", price);
-    // formData.set("brand", brand);
-    // formData.set("quantity", quantity);
-
-    // images.forEach((image) => {
-    //   formimages.push(image);
-    // });
-    // images.forEach((image) => {
-    //   formData.append("images", image);
-    // });
     formData.images = images;
     console.log(formData);
     dispatch(createProduct(formData));
@@ -96,7 +77,6 @@ const AddProductScreen = ({ history }) => {
                 placeholder="Enter Product Title"
                 name="title"
                 value={title}
-                // onChange={(e) => setTitle(e.target.value)}
                 onChange={handleChange}
               ></Form.Control>
             </Form.Group>
@@ -107,7 +87,6 @@ const AddProductScreen = ({ history }) => {
                 placeholder="Enter Product price"
                 name="price"
                 value={price}
-                // onChange={(e) => setPrice(e.target.value)}
                 onChange={handleChange}
               ></Form.Control>
             </Form.Group>
@@ -118,7 +97,6 @@ const AddProductScreen = ({ history }) => {
                 placeholder="Enter Product brand"
                 name="brand"
                 value={brand}
-                // onChange={(e) => setBrand(e.target.value)}
                 onChange={handleChange}
               ></Form.Control>
             </Form.Group>
@@ -129,7 +107,6 @@ const AddProductScreen = ({ history }) => {
                 placeholder="Enter Product quantity"
                 name="quantity"
                 value={quantity}
-                // onChange={(e) => setQuantity(e.target.value)}
                 onChange={handleChange}
               ></Form.Control>
             </Form.Group>
@@ -140,20 +117,9 @@ const AddProductScreen = ({ history }) => {
                 placeholder="Enter Product description"
                 name="description"
                 value={description}
-                // onChange={(e) => setDescription(e.target.value)}
                 onChange={handleChange}
               ></Form.Control>
             </Form.Group>
-            {/* <Form.Group controlId="rating">
-              <Form.Label>Rating</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Enter Product rating"
-                  name="rating"
-                value={rating}
-                onChange={handleChange}
-              ></Form.Control>
-            </Form.Group> */}
 
             <Form.Group controlId="category">
               <Form.Label>Select category</Form.Label>
@@ -161,7 +127,6 @@ const AddProductScreen = ({ history }) => {
                 as="select"
                 name="category"
                 value={category}
-                // onChange={(e) => setCategory(e.target.value)}
                 onChange={handleChange}
               >
                 <Fragment>
