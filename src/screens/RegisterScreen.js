@@ -21,6 +21,7 @@ const RegisterScreen = ({ history, location }) => {
     e.preventDefault();
     if (password !== confirmPassword) {
       dispatch(setAlert("Passwords don't match", "danger"));
+      return history.push("/register")
     }
     dispatch(registerUser({ name, email, password }));
   };
