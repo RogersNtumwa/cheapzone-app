@@ -9,7 +9,7 @@ import { createProduct } from "../actions/product";
 
 const AddProductScreen = ({ history }) => {
   const [formData, setformData] = useState({});
-  
+
   const [images, setImages] = useState([]);
   const [previeImages, setpreviewImages] = useState([]);
 
@@ -25,13 +25,8 @@ const AddProductScreen = ({ history }) => {
 
   const onSubmitHandlerHandler = (e) => {
     e.preventDefault();
-
     formData.images = images;
-    console.log(formData);
     dispatch(createProduct(formData));
-
-    // // redirecting not working fine yet
-    success && history.push("/shop");
   };
 
   const handleChange = (e) => {
@@ -56,8 +51,15 @@ const AddProductScreen = ({ history }) => {
   };
 
   useEffect(() => {
+    if (success) {
+      return history.push("/shop");
+    }
+  }, [success, history]);
+
+  useEffect(() => {
     dispatch(listCategories());
   }, [dispatch]);
+
   return (
     <Fragment>
       <Link to="/admin/productlist" className="btn btn-light my-3">
